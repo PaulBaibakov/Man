@@ -35,14 +35,23 @@ module.exports = {
 		host: '127.0.0.1',
 		port: 80,
 		proxy: {
-			'/api/bypass-example': {
-				bypass: (req, res) => res.send({
-					mssg: 'response from proxy!!!!!!!!!!!!'
-				}),
-			},
 			'/api/getSQL': {
-				bypass: function (req, res) { RouteSQL(req, res) }
+				bypass: function (req, res) {
+					RouteSQL(req, res);
+					res.send(res);
+				}
 			},
 		},
 	}
 };
+/*
+ * 
+ * 
+'/api/bypass-example': {
+				bypass: (req, res) => res.send({
+					mssg: 'response from proxy!!!!!!!!!!!!'
+				}),
+			},
+ * 
+ * 
+ */

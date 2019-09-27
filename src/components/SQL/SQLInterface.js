@@ -8,7 +8,7 @@ var fs = require('fs');
 var ini = require('ini');
 var Route = require('./RouteSQL');
 var url = require('url');
-
+/*
 d.run(function () {
 	console.log('domain is run');
 	new http.Server(function (req, res) {
@@ -20,3 +20,4 @@ d.run(function () {
 	}
 	).addListener(listen(tuneSQLServer, '127.0.0.1');
 });
+*/

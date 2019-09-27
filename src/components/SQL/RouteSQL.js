@@ -3,9 +3,11 @@ var ini = require('ini');
 var sql = require('mssql');
 var url = require('url');
 
-var config = ini.parse(fs.readFileSync('TuneSQL.ini', 'utf-8'));
+
+//var st = fs.readFileSync(__dirname+'/TuneSQL.ini', 'utf-8');
+var config = ini.parse(fs.readFileSync(__dirname+'/TuneSQL.ini', 'utf-8'));
 const tuneSQL = {
-	user: String(config.SERVER.user),
+	user: String(config.SERVER.username),
 	password: String(config.SERVER.password),
 	server: String(config.SERVER.server),
 	database: String(config.SERVER.database),
@@ -17,6 +19,7 @@ var RouteSQL = function (req, res) {
 	//res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
 	let s = [];
 	let ss = '';
+	sql.close();
 	sql.connect(tuneSQL, function (err) {
 		if (err !== null) {
 			console.log(err);
@@ -25,6 +28,7 @@ var RouteSQL = function (req, res) {
 		var urlParse = url.parse(req.url, true);
 
 		let SQLrequest = new sql.Request();
+		
 		let sql_string = '';
 		/*
 		if (urlParse.reqValue = 'GetWorkstations') {
@@ -51,6 +55,7 @@ var RouteSQL = function (req, res) {
 				WORKSTATION_NAME: row['WORKSTATION_NAME']
 			};
 			ss = row['WORKSTATION_NAME'];
+			console.log('dfg'+ss);
 		});
 
 		SQLrequest.on('error', function (err) {
@@ -60,8 +65,8 @@ var RouteSQL = function (req, res) {
 
 		SQLrequest.on('done', function (result) {
 			// Always emitted as the last one
-			//2019-09-27 res.write(JSON.stringify(s));
-			res.write(ss);
+			res.write(JSON.stringify(s));
+			//res.write(ss);
 			/*
 			for (let i=0; i<s.length; i++){
 				res.write(s[i].RN+'<br>');
