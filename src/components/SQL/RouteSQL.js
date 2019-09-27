@@ -3,19 +3,20 @@ var ini = require('ini');
 var sql = require('mssql');
 var url = require('url');
 
-//var config = ini.parse(fs.readFileSync('TuneSQL.ini', 'utf-8'));
+var config = ini.parse(fs.readFileSync('TuneSQL.ini', 'utf-8'));
 const tuneSQL = {
-	user: 'sa',/*String(config.SERVER.user),*/
-	password: 'sa',/*String(config.SERVER.password),*/
-	server: 'soft-70\sql2012',/*String(config.SERVER.server),*/
-	database: 'TAURAS',/*String(config.SERVER.database),*/
+	user: String(config.SERVER.user),
+	password: String(config.SERVER.password),
+	server: String(config.SERVER.server),
+	database: String(config.SERVER.database),
 	options: {
 		encrypt: false // Use this if you're on Windows Azure
 	}
 };
-var Route = function (req, res) {
-	res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+var RouteSQL = function (req, res) {
+	//res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
 	let s = [];
+	let ss = '';
 	sql.connect(tuneSQL, function (err) {
 		if (err !== null) {
 			console.log(err);
@@ -25,9 +26,12 @@ var Route = function (req, res) {
 
 		let SQLrequest = new sql.Request();
 		let sql_string = '';
+		/*
 		if (urlParse.reqValue = 'GetWorkstations') {
 			sql_string = 'select * from sp_workstations order by 1';
 		};
+		*/
+		sql_string = 'select top 1 * from sp_workstations order by 1';
 
 		SQLrequest.stream = true; // You can set streaming differently for each request
 		SQLrequest.query(sql_string); // or request.execute(procedure)
@@ -46,6 +50,7 @@ var Route = function (req, res) {
 				WORKSTATION_ID: row['WORKSTATION_ID'],
 				WORKSTATION_NAME: row['WORKSTATION_NAME']
 			};
+			ss = row['WORKSTATION_NAME'];
 		});
 
 		SQLrequest.on('error', function (err) {
@@ -55,7 +60,8 @@ var Route = function (req, res) {
 
 		SQLrequest.on('done', function (result) {
 			// Always emitted as the last one
-			res.write(JSON.stringify(s));
+			//2019-09-27 res.write(JSON.stringify(s));
+			res.write(ss);
 			/*
 			for (let i=0; i<s.length; i++){
 				res.write(s[i].RN+'<br>');
@@ -75,4 +81,4 @@ var Route = function (req, res) {
 	//res.end();
 };
 
-module.exports = Route;
+module.exports = RouteSQL;

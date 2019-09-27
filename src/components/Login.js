@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './CSS/StyleLogin.css';
+//import './ComboBoxJSON';
 
 
 
@@ -14,19 +15,21 @@ export default class LoginForm extends PureComponent {
 
 				<button className="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Рег</button>
 
-				<div className="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div className="modal-center">
 						<div className="modal-dialog .modal-align-center">
 							<div className="modal-content">
 								<div className="modal-header">
 									<h4 className="modal-title" id="myModalLabel">Регистрация на машине</h4>
-									<button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+									<button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">×</span><span className="sr-only">Close</span>
 
 									</button>
 
 
 								</div>
+								
 								<div className="modal-body">
+
 									<input type="text" placeholder="Пользователь" className="form-control validate"></input>
 									<br></br>
 									<input type="password" placeholder="Пароль" className="form-control validate"></input>

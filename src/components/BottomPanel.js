@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default class BottomPanel extends PureComponent {
 	render() {

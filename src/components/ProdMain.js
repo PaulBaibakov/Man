@@ -7,7 +7,12 @@ import './CSS/Style.css';
 
 export default class ProdMain extends PureComponent {
 	componentDidMount() {
+		/*
 		fetch('/api/bypass-example')
+			.then(res => res.json())
+			.then(data => console.log(data));
+		*/
+		fetch('/api/getSQL')
 			.then(res => res.json())
 			.then(data => console.log(data));
 	}

@@ -1,5 +1,6 @@
 ﻿const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const RouteSQL = require("./src/components/SQL/RouteSQL.js");
 
 
 module.exports = {
@@ -32,12 +33,15 @@ module.exports = {
 		hot: true,
 		compress: true,
 		host: '127.0.0.1',
-		port: 9009,
+		port: 80,
 		proxy: {
 			'/api/bypass-example': {
 				bypass: (req, res) => res.send({
 					mssg: 'response from proxy!!!!!!!!!!!!'
 				}),
+			},
+			'/api/getSQL': {
+				bypass: function (req, res) { RouteSQL(req, res) }
 			},
 		},
 	}
