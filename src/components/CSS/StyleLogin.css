@@ -1,0 +1,16 @@
+
+.modal-center {
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+.modal-align-center {
+	: table-cell;
+	vertical-align: middle;
+}
+
+.modal-content {
+	height: inherit;
+	margin: 0 auto;
+}

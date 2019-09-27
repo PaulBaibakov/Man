@@ -1,0 +1,28 @@
+.flex {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background: #A6CAF0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+	background: #A6CAF0;
+}
+
+.h100 {
+	background: #A6CAF0;
+
+	flex-grow: 3;
+}
+
+.footer {
+	background: #A6CAF0;
+}
+.row100rest {
+	height: 100%;
+}
