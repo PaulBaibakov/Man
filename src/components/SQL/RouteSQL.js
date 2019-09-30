@@ -55,7 +55,8 @@ var RouteSQL = function (req, res) {
 				WORKSTATION_NAME: row['WORKSTATION_NAME']
 			};
 			ss = row['WORKSTATION_NAME'];
-			console.log('dfg'+ss);
+			console.log('dfg' + ss);
+			urlParse.reqValue;
 		});
 
 		SQLrequest.on('error', function (err) {
