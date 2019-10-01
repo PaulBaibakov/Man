@@ -35,7 +35,7 @@ var RouteSQL = function (req, res) {
 			sql_string = 'select * from sp_workstations order by 1';
 		};
 		*/
-		sql_string = 'select top 1 * from sp_workstations order by 1';
+		sql_string = req.body.SQLstring;
 
 		SQLrequest.stream = true; // You can set streaming differently for each request
 		SQLrequest.query(sql_string); // or request.execute(procedure)

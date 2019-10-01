@@ -1,23 +1,28 @@
-var domain = require('domain');
-var d = domain.create();
-d.on('error', function (err) {
-	console.error("Доменная ошибка перехвачена %s", err);
-});
 var http = require('http');
 var fs = require('fs');
 var ini = require('ini');
-var Route = require('./RouteSQL');
+var sql = require('mssql');
 var url = require('url');
-/*
-d.run(function () {
-	console.log('domain is run');
-	new http.Server(function (req, res) {
-		console.log(req.url);
-		var urlParse = url.parse(req, true);
-		if ((urlParse.pathname === '/sql') && (req.method === 'PUT')) {
-			Route(req, res);
-		};
+
+
+var config = ini.parse(fs.readFileSync(__dirname + '/TuneSQL.ini', 'utf-8'));
+const tuneSQL = {
+	user: String(config.SERVER.username),
+	password: String(config.SERVER.password),
+	server: String(config.SERVER.server),
+	database: String(config.SERVER.database),
+	options: {
+		encrypt: false // Use this if you're on Windows Azure
 	}
-	).addListener(listen(tuneSQLServer, '127.0.0.1');
-});
-*/
+};
+
+var SQLInterface = function (req, res) {
+	sql.close();
+	sql.on('error', err => {
+		console.log('error');
+	})
+	
+	sql.connect(tuneSQL).then(pool => {
+	
+}
+module.exports = SQLInterface;

@@ -7,22 +7,17 @@ import './CSS/Style.css';
 
 export default class ProdMain extends PureComponent {
 	componentDidMount() {
-		/*
-		fetch('/api/bypass-example')
-			.then(res => res.json())
-			.then(data => console.log(data));
-		*/
 		let options = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
-			body: JSON.stringify({ name: 'Paul', sname: 'Pa' }),
+			body: JSON.stringify({ commandSQL: 'select * from sp_workstations order by 2', methodSQL: '1', params: {}}),
 		};
 
 		fetch('/api/getSQL', options)
-			.then(response => console.log(response.json()))
-			.then(result => console.log(result));
+			.then(result => console.log(result.json()))
+			.then(error => console.log(error));
 		
 		
 		
