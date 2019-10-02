@@ -1,8 +1,12 @@
 ﻿const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-//const RouteSQL = require("./src/components/SQL/RouteSQL.js");
-//const testRoute = require("./src/components/SQL/testRoute.js");
-const SQLInterface = require("./src/components/SQL/SQLInterface.js");
+const RouteSQL = require("./src/components/SQL/RouteSQL.js");
+const testRoute = require("./src/components/SQL/testRoute.js");
+
+
+
+var bodyParser = require('body-parser');
+
 
 
 module.exports = {
@@ -30,23 +34,50 @@ module.exports = {
 		})
 	],
 	devServer: {
-		//https: false,
-		historyApiFallback: true,
-		//contentBase: path.join(__dirname, 'dist'),
+		before: function (app) {
+			app.use(bodyParser.json());
+			app.use(
+				bodyParser.urlencoded({
+					extended: true,
+				})
+			);
+
+			//app.post(/.*api$/, async function(req, res, next) {
+			app.post('/public-api/auth/cognito', async function (req, res, next) {
+				const sNewUrl = 'http://127.0.0.1' + req.url;
+				const oOptions = {
+					method: 'post',
+					url: sNewUrl,
+					data: req.body,
+				};
+				const oProxiedResponse = await axios.request(oOptions);
+
+				console.log(sNewUrl, req.body);
+				res.json(oProxiedResponse.data);
+			});
+		},
+		contentBase: path.join(__dirname, 'dist'),
 		hot: true,
 		compress: true,
 		host: '127.0.0.1',
 		port: 80,
 		proxy: {
-			historyApiFallback: true,
 			'/api/getSQL': {
 				bypass: (req, res) => res.send({
-					mssg: SQLInterface(req, res)//testRoute(req, res)
+					mssg: testRoute(req, res)
 				}),
-				changeOrigin: true,
-				secure: false
 			},
 		},
-
 	}
 };
+/*
+ * 
+ * 
+'/api/bypass-example': {
+				bypass: (req, res) => res.send({
+					mssg: 'response from proxy!!!!!!!!!!!!'
+				}),
+			},
+ * 
+ * 
+ */
