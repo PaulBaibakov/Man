@@ -1,7 +1,8 @@
 ﻿const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const RouteSQL = require("./src/components/SQL/RouteSQL.js");
-const testRoute = require("./src/components/SQL/testRoute.js");
+//const RouteSQL = require("./src/components/SQL/RouteSQL.js");
+//const testRoute = require("./src/components/SQL/testRoute.js");
+const SQLInterface = require("./src/components/SQL/SQLInterface.js");
 
 
 module.exports = {
@@ -29,29 +30,23 @@ module.exports = {
 		})
 	],
 	devServer: {
-		https: false,
-		contentBase: path.join(__dirname, 'dist'),
+		//https: false,
+		historyApiFallback: true,
+		//contentBase: path.join(__dirname, 'dist'),
 		hot: true,
 		compress: true,
 		host: '127.0.0.1',
 		port: 80,
 		proxy: {
+			historyApiFallback: true,
 			'/api/getSQL': {
 				bypass: (req, res) => res.send({
-					mssg: testRoute(req, res)
+					mssg: SQLInterface(req, res)//testRoute(req, res)
 				}),
+				changeOrigin: true,
+				secure: false
 			},
 		},
+
 	}
 };
-/*
- * 
- * 
-'/api/bypass-example': {
-				bypass: (req, res) => res.send({
-					mssg: 'response from proxy!!!!!!!!!!!!'
-				}),
-			},
- * 
- * 
- */

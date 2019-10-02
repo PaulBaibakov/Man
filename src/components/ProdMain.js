@@ -8,11 +8,11 @@ import './CSS/Style.css';
 export default class ProdMain extends PureComponent {
 	componentDidMount() {
 		let options = {
-			method: 'POST',
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
-			body: JSON.stringify({ commandSQL: 'select * from sp_workstations order by 2', methodSQL: '1', params: {}}),
+			body: JSON.stringify({commandSQL: 'select * from sp_workstations order by 2'}),
 		};
 
 		fetch('/api/getSQL', options)
