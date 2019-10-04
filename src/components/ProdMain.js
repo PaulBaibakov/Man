@@ -12,17 +12,26 @@ export default class ProdMain extends PureComponent {
 			.then(res => res.json())
 			.then(data => console.log(data));
 		*/
+/*
+ 			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+ **/
 		let options = {
-			method: 'PUT', 
+			method: 'POST', 
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
-			body: JSON.stringify({ name: 'Paul', sname: 'Pa' }),
+			body: JSON.stringify({
+				SQLcommand: 'select top 1 workstation_name from sp_workstations order by 1'
+			}),
 		};
 
-		fetch('/api/getSQL', options)
-			.then(response => console.log(response.json()))
-			.then(result => console.log(result));
+		let response = fetch('/api/getSQL', options);
+		let result = response.json();
+		console.log(result.text());
+			//.then(response => console.log(response.text()));//json()))
+			//.then(result => console.log('ressss - '+result));
 		
 		
 		

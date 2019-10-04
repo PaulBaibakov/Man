@@ -1,7 +1,8 @@
 ﻿const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const RouteSQL = require("./src/components/SQL/RouteSQL.js");
-const testRoute = require("./src/components/SQL/testRoute.js");
+//const RouteSQL = require("./src/components/SQL/RouteSQL.js");
+//const testRoute = require("./src/components/SQL/testRoute.js");
+const SQLInterface = require("./src/components/SQL/SQLInterface.js");
 
 
 
@@ -52,7 +53,7 @@ module.exports = {
 				};
 				const oProxiedResponse = await axios.request(oOptions);
 
-				console.log(sNewUrl, req.body);
+				//console.log(sNewUrl, req.body);
 				res.json(oProxiedResponse.data);
 			});
 		},
@@ -64,7 +65,7 @@ module.exports = {
 		proxy: {
 			'/api/getSQL': {
 				bypass: (req, res) => res.send({
-					mssg: testRoute(req, res)
+					mssg: SQLInterface(req, res)
 				}),
 			},
 		},
