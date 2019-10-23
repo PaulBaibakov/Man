@@ -6,32 +6,25 @@ import CenterPanel from './CenterPanel';
 import './CSS/Style.css';
 
 export default class ProdMain extends PureComponent {
-	componentDidMount() {
-		/*
-		fetch('/api/bypass-example')
-			.then(res => res.json())
-			.then(data => console.log(data));
-		*/
-/*
- 			headers: {
-				'Content-Type': 'application/json;charset=utf-8'
-			},
- **/
+	async componentDidMount() {
+
 		let options = {
-			method: 'POST', 
+			method: 'PUT', 
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
 			body: JSON.stringify({
-				SQLcommand: 'select top 1 workstation_name from sp_workstations order by 1'
+				SQLcommand: 'select top 1 workstation_name from sp_workstations'
 			}),
 		};
 
-		let response = fetch('/api/getSQL', options);
-		let result = response.json();
-		console.log(result.text());
-			//.then(response => console.log(response.text()));//json()))
-			//.then(result => console.log('ressss - '+result));
+		let response = await fetch('/api/getSQL', options);
+		if (response.ok) {
+			let json = await response.json();
+			console.log('ok&&&&&&&&&&');
+		}
+			
+		
 		
 		
 		

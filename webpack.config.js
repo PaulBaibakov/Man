@@ -43,7 +43,7 @@ module.exports = {
 				})
 			);
 
-			//app.post(/.*api$/, async function(req, res, next) {
+			/*
 			app.post('/public-api/auth/cognito', async function (req, res, next) {
 				const sNewUrl = 'http://127.0.0.1' + req.url;
 				const oOptions = {
@@ -52,33 +52,35 @@ module.exports = {
 					data: req.body,
 				};
 				const oProxiedResponse = await axios.request(oOptions);
-
-				//console.log(sNewUrl, req.body);
 				res.json(oProxiedResponse.data);
 			});
+			*/
 		},
 		contentBase: path.join(__dirname, 'dist'),
 		hot: true,
 		compress: true,
 		host: '127.0.0.1',
 		port: 80,
+		liveReload: true,
 		proxy: {
 			'/api/getSQL': {
-				bypass: (req, res) => res.send({
-					mssg: SQLInterface(req, res)
-				}),
+				bypass: function (req, res, proxyOptions) {
+					return SQLInterface(req, res)}
 			},
+			changeOrigin: true
 		},
 	}
 };
 /*
  * 
  * 
-'/api/bypass-example': {
+		proxy: {
+			'/api/getSQL': {
 				bypass: (req, res) => res.send({
-					mssg: 'response from proxy!!!!!!!!!!!!'
+					mssg: 'ssssssssss'
 				}),
 			},
+		},
  * 
  * 
  */
