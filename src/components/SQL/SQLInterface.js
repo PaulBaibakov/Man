@@ -21,7 +21,8 @@ var SQLInterface = function (req, res) {
 	//console.log(req.body.SQLcommand + 'rrrrrrrrrr');
 	console.log('!!!!rrrrrrrrrr');
 
-	return JSON.stringify({ val:'wwwwwwww'});
+	//res.write(JSON.stringify({ val:'wwwwwwww'}));
+	res.write('ok333');
 
 };
 
