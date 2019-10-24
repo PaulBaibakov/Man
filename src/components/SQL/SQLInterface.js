@@ -18,10 +18,17 @@ const tuneSQL = {
 
 //req.body.SQLcommand
 var SQLInterface = function (req, res) {
-	//console.log(req.body.SQLcommand + 'rrrrrrrrrr');
+	console.log(req.body.SQLcommand + 'rrrrrrrrrr');
 	console.log('!!!!rrrrrrrrrr');
+	console.log(req.method);
+	//console.log(req.body);
 
-	return JSON.stringify({ val:'wwwwwwww'});
+	//res.write(JSON.stringify({ val:'wwwwwwww'}));
+	res.body = JSON.stringify({ val: 'wwwwwwww' });
+	res.status = 200;
+	res.ok = true;
+	res.end();
+
 
 };
 

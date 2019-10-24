@@ -6,23 +6,21 @@ import CenterPanel from './CenterPanel';
 import './CSS/Style.css';
 
 export default class ProdMain extends PureComponent {
-	async componentDidMount() {
+	componentDidMount() {
 
-		let options = {
+		const options = {
 			method: 'PUT', 
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
 			body: JSON.stringify({
 				SQLcommand: 'select top 1 workstation_name from sp_workstations'
-			}),
+			})
 		};
 
-		let response = await fetch('/api/getSQL', options);
-		if (response.ok) {
-			let json = await response.json();
-			console.log('ok&&&&&&&&&&');
-		}
+		fetch('/api/getSQL', options)
+			.then(response => response.json())
+			.then(result => alert(result));
 			
 		
 		

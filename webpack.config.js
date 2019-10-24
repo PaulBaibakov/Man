@@ -62,12 +62,11 @@ module.exports = {
 		host: '127.0.0.1',
 		port: 80,
 		liveReload: true,
+		//http2: true,
 		proxy: {
 			'/api/getSQL': {
-				bypass: function (req, res, proxyOptions) {
-					return SQLInterface(req, res)}
-			},
-			changeOrigin: true
+				bypass: function (req, res) { SQLInterface(req, res); }
+			}
 		},
 	}
 };
