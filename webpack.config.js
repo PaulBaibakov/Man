@@ -65,8 +65,14 @@ module.exports = {
 		//http2: true,
 		proxy: {
 			'/api/getSQL': {
+<<<<<<< HEAD
 				bypass: function (req, res) { SQLInterface(req, res); }
 			}
+=======
+				bypass: function (req, res, proxyOptions) { SQLInterface(req, res);}
+			},
+			changeOrigin: true
+>>>>>>> f1bfbe76ebc6901e68d89e29a78bd66a4b686681
 		},
 	}
 };

@@ -29,6 +29,11 @@ var SQLInterface = function (req, res) {
 	res.ok = true;
 	res.end();
 
+<<<<<<< HEAD
+=======
+	//res.write(JSON.stringify({ val:'wwwwwwww'}));
+	res.write('ok333');
+>>>>>>> f1bfbe76ebc6901e68d89e29a78bd66a4b686681
 
 };
 
