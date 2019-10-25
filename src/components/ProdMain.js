@@ -8,13 +8,8 @@ import './CSS/Style.css';
 export default class ProdMain extends PureComponent {
 	componentDidMount() {
 
-<<<<<<< HEAD
 		const options = {
-			method: 'PUT', 
-=======
-		let options = {
 			method: 'POST', 
->>>>>>> f1bfbe76ebc6901e68d89e29a78bd66a4b686681
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
@@ -22,25 +17,11 @@ export default class ProdMain extends PureComponent {
 				SQLcommand: 'select top 1 workstation_name from sp_workstations'
 			})
 		};
-<<<<<<< HEAD
+
 
 		fetch('/api/getSQL', options)
 			.then(response => response.json())
 			.then(result => alert(result));
-=======
-		console.log('1ok&&&&&&&&&&');
-		fetch('/api/getSQL', options)
-			.then(response => response.text())
-			.then(err => console.log(err.text));
-		console.log('ok2');
-		console.log(response);
-		
->>>>>>> f1bfbe76ebc6901e68d89e29a78bd66a4b686681
-			
-		
-		
-		
-		
 	}
 	render() {
 		return (

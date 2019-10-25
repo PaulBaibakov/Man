@@ -2,7 +2,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 //const RouteSQL = require("./src/components/SQL/RouteSQL.js");
 //const testRoute = require("./src/components/SQL/testRoute.js");
-const SQLInterface = require("./src/components/SQL/SQLInterface.js");
+//const SQLInterface = require("./src/components/SQL/SQLInterface.js");
 
 
 
@@ -65,15 +65,11 @@ module.exports = {
 		//http2: true,
 		proxy: {
 			'/api/getSQL': {
-<<<<<<< HEAD
-				bypass: function (req, res) { SQLInterface(req, res); }
+				target: 'http://127.0.0.1:8080'
 			}
-=======
-				bypass: function (req, res, proxyOptions) { SQLInterface(req, res);}
-			},
-			changeOrigin: true
->>>>>>> f1bfbe76ebc6901e68d89e29a78bd66a4b686681
-		},
+
+
+		}
 	}
 };
 /*
