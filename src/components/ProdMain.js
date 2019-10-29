@@ -7,20 +7,21 @@ import './CSS/Style.css';
 
 export default class ProdMain extends PureComponent {
 	componentDidMount() {
-
+		
+		const _sql = { SQLcommand: 'select top 1 workstation_name from sp_workstations' };
+		
 		const options = {
 			method: 'POST', 
+			mode: 'no-cors',
 			headers: {
-				'Content-Type': 'application/json;charset=utf-8'
+				'Content-Type': 'application/json; charset=utf-8'
 			},
-			body: JSON.stringify({
-				SQLcommand: 'select top 1 workstation_name from sp_workstations'
-			})
+			body: JSON.stringify(_sql)
 		};
 
 
-		fetch('/api/getSQL', options)
-			.then(response => response.json())
+		fetch('/api/getSQL/', options)
+			.then(response => response.text())
 			.then(result => alert(result));
 	}
 	render() {

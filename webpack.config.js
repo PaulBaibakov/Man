@@ -58,17 +58,29 @@ module.exports = {
 		},
 		contentBase: path.join(__dirname, 'dist'),
 		hot: true,
-		compress: true,
-		host: '127.0.0.1',
+		//compress: true,
+		host: "127.0.0.1",
 		port: 80,
 		liveReload: true,
 		//http2: true,
+		//historyApiFallback: true,
+		disableHostCheck: true,
 		proxy: {
 			'/api/getSQL': {
-				target: 'http://127.0.0.1:8080'
-			}
-
-
+				target: 'http://127.0.0.1:8080',
+				onProxyReq: (proxyReq, req, res) => {
+					console.log('proxy');
+					console.log(proxyReq);
+					//console.log(req);
+					//console.log(res);
+					//proxyReq.setHeader('Access-Control-Allow-Origin', '*');
+					console.log(req);
+				},
+				secure: false,
+				pathRewrite: { '^/api/getSQL': '' }
+			},
+			changeOrigin: true,
+			//proxyTimeout: 1
 		}
 	}
 };
