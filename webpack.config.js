@@ -70,17 +70,16 @@ module.exports = {
 				target: 'http://127.0.0.1:8080',
 				onProxyReq: (proxyReq, req, res) => {
 					console.log('proxy');
-					console.log(proxyReq);
+					//console.log(proxyReq);
 					//console.log(req);
 					//console.log(res);
 					//proxyReq.setHeader('Access-Control-Allow-Origin', '*');
-					console.log(req);
+					//console.log(req);
 				},
 				secure: false,
 				pathRewrite: { '^/api/getSQL': '' }
 			},
 			changeOrigin: true,
-			//proxyTimeout: 1
 		}
 	}
 };
